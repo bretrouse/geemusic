@@ -56,6 +56,12 @@
             ]
         },
         {
+            "intent": "GeeMusicPlayStationIntent",
+            "slots": [
+                {"name":"station_name", "type":"AMAZON.MusicPlaylist"}
+            ]
+        },
+        {
             "intent": "GeeMusicQueueSongIntent",
             "slots": [
                 {"name":"song_name", "type":"AMAZON.MusicRecording"},
@@ -116,6 +122,9 @@
         },
         {
             "intent": "GeeMusicListAllPlaylists"
+        },
+        {
+            "intent": "GeeMusicListAllStations"
         },
         {
             "intent": "GeeMusicPlayDifferentAlbumIntent"

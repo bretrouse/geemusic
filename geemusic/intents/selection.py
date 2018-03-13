@@ -391,3 +391,28 @@ def play_library():
 
     speech_text = render_template("play_library_text")
     return audio(speech_text).play(stream_url)
+
+
+@ask.intent("GeeMusicPlayStationIntent")
+def play_station(station_name):
+    # Retreve the content of all stations in a users library
+    all_stations = api.get_all_stations()
+
+    # Get the closest match
+    best_match = api.closest_match(station_name, all_stations)
+
+    if best_match is None:
+        return statement(render_template("play_station_no_match"))
+
+    # Add songs from the station onto our queue
+    first_song_id = queue.reset(api.get_station_tracks(best_match['id']))
+
+    # Get a streaming URL for the first song in the station
+    stream_url = api.get_stream_url(first_song_id)
+    thumbnail = api.get_thumbnail(queue.current_track()['albumArtRef'][0]['url'])
+    speech_text = render_template("play_station_text", station=best_match['name'])
+    return audio(speech_text).play(stream_url) \
+        .standard_card(title=speech_text,
+                       text='',
+                       small_image_url=thumbnail,
+                       large_image_url=thumbnail)

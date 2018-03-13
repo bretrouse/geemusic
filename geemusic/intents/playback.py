@@ -187,6 +187,32 @@ def list_all_playlists():
     return statement(speech_text)
 
 
+@ask.intent('GeeMusicListAllStations')
+def list_all_stations():
+    if api.is_indexing():
+        return statement(render_template("indexing"))
+
+    all_stations = api.get_all_stations()
+    station_names = []
+    total_stations = 0
+    for i, match in enumerate(all_stations):
+        station_names.append(match['name'])
+        total_stations = i + 1
+
+    # Adds "and" before the last station to sound more natural when speaking
+    if len(station_names) >= 3:
+        and_placement = len(station_names) - 1
+        station_names.insert(and_placement, render_template("playlist_separator"))
+
+    app.logger.debug(station_names)
+    station_names = ', '.join(station_names)
+
+    speech_text = render_template("list_all_stations_text",
+                                  station_count=total_stations,
+                                  station_list=station_names)
+    return statement(speech_text)
+
+
 @ask.intent("GeeMusicThumbsUpIntent")
 def thumbs_up():
     if len(queue.song_ids) == 0:

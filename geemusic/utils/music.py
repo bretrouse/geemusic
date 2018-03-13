@@ -132,6 +132,9 @@ class GMusicWrapper(object):
 
     def get_promoted_songs(self):
         return self._api.get_promoted_songs()
+
+    def get_all_stations(self):
+        return self._api.get_all_stations()
     
     def get_station(self, title, track_id=None, artist_id=None, album_id=None):
         if artist_id is not None:

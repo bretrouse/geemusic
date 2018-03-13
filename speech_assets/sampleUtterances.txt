@@ -117,3 +117,16 @@ GeeMusicListAllPlaylists to list my playlists
 GeeMusicListAllPlaylists tell me what playlists are in my library
 GeeMusicListAllPlaylists to list my playlists
 GeeMusicListAllPlaylists list playlists
+
+GeeMusicListAllStations what stations do I have
+GeeMusicListAllStations list my stations
+GeeMusicListAllStations to list my stations
+GeeMusicListAllStations tell me what stations are in my library
+GeeMusicListAllStations to list my stations
+GeeMusicListAllStations list stations
+
+GeeMusicPlayStationIntent Play {station_name} station
+GeeMusicPlayStationIntent Station {station_name}
+GeeMusicPlayStationIntent Start station {station_name}
+GeeMusicPlayStationIntent Play songs from my {station_name} station
+GeeMusicPlayStationIntent Play station {station_name}
